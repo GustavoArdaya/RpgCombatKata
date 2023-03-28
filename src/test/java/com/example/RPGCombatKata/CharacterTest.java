@@ -21,4 +21,14 @@ class CharacterTest {
         assertEquals(1000L, sut);
     }
 
+    @Test
+    void startingCharacterHasLevelOf1() {
+        //GIVEN
+        Character rambo = new Character("Rambo");
+        //WHEN
+        var sut = rambo.getLevel();
+        //THEN
+        assertEquals(1,sut);
+    }
+
 }
