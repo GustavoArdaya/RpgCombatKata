@@ -110,6 +110,7 @@ class CharacterTest {
 
     @Test
     void characterCanOnlyHealItself() {
+        //GIVEN
         Character drHouse = new Character("Dr. House");
         Character patient = new Character("Patient");
 
@@ -124,5 +125,31 @@ class CharacterTest {
         //THEN
         assertEquals(900, sut1);
         assertEquals(950, sut2);
+    }
+
+    @Test
+    void victimReducesDamageCausedBy50PercentIfFiveLevelsAboveCharacter() {
+        //GIVEN
+        Character meekPlayer = new Character("Meek Player");
+        Character lowlyMinion = new Character("Lowly Minion");
+        Character middleMinion = new Character("Middle Minion");
+        Character finalBoss = new Character("Final Boss");
+
+        //WHEN
+        lowlyMinion.setLevel(2);
+        middleMinion.setLevel(5);
+        finalBoss.setLevel(50);
+        meekPlayer.attacks(lowlyMinion, 100);
+        meekPlayer.attacks(middleMinion,100);
+        meekPlayer.attacks(finalBoss, 100);
+
+        var sut1 = lowlyMinion.getHealth();
+        var sut2 = middleMinion.getHealth();
+        var sut3 = finalBoss.getHealth();
+
+        //THEN
+        assertEquals(900, sut1);
+        assertEquals(950, sut2);
+        assertEquals(950, sut3);
     }
 }
