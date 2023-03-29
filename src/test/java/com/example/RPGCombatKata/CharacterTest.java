@@ -345,6 +345,10 @@ class CharacterTest {
         Faction covenant = new Faction("Covenant");
 
         //WHEN
+        masterChief.joinFaction(spartan, spaceCommand);
+        cortana.joinFaction(spaceCommand,forerunners);
+        sangheili.joinFaction(covenant);
+
         masterChief.attacks(cortana, 50);
         masterChief.attacks(sangheili, 50);
 

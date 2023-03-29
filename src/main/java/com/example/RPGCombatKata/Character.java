@@ -86,7 +86,8 @@ public class Character {
     }
 
     public void attacks(Character victim, int damage) {
-        if (victim != this) {
+        Boolean victimIsAlly = this.isAlly(victim);
+        if (victim != this && !victimIsAlly) {
             int distance = this.getDistanceToVictim(victim);
             if (distance <= this.getRange()) {
                 int actualDamage = damage;
