@@ -104,4 +104,22 @@ class CharacterTest {
         //THEN
         assertEquals(1000, sut);
     }
+
+    @Test
+    void characterCanOnlyHealItself() {
+        Character drHouse = new Character("Dr. House");
+        Character patient = new Character("Patient");
+
+        //WHEN
+        patient.damage(100);
+        drHouse.heals(patient, 50);
+        drHouse.damage(100);
+        drHouse.heals(drHouse, 50);
+        var sut1 = patient.getHealth();
+        var sut2 = drHouse.getHealth();
+
+        //THEN
+        assertEquals(900, sut1);
+        assertEquals(950, sut2);
+    }
 }
