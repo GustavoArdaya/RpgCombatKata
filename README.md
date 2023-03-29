@@ -19,7 +19,7 @@ This is a fun kata that has the programmer building simple combat rules, as for 
     - [x] When damage received exceeds current Health, Health becomes 0 and the character dies
 - [x] A Character can Heal a Character:
     - [x] Dead characters cannot be healed
-    - [ ] Healing cannot raise health above 1000
+    - [x] Healing cannot raise health above 1000
 
 ## **Iteration Two**
 

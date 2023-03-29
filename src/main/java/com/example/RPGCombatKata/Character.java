@@ -46,7 +46,9 @@ public class Character {
     }
 
     public void attacks(Character victim, int damage) {
-        victim.damage(damage);
+        if (victim != this) {
+            victim.damage(damage);
+        }
     }
 
     public void damage(int damage) {

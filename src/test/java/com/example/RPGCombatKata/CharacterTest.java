@@ -93,4 +93,15 @@ class CharacterTest {
         assertEquals(0,sut2);
         assertEquals(1000, sut3);
     }
+
+    @Test
+    void characterCannotAttackHimself() {
+        //GIVEN
+        Character dishonoredSamurai = new Character("Dishonored Samurai");
+        //WHEN
+        dishonoredSamurai.attacks(dishonoredSamurai, 50);
+        var sut = dishonoredSamurai.getHealth();
+        //THEN
+        assertEquals(1000, sut);
+    }
 }
