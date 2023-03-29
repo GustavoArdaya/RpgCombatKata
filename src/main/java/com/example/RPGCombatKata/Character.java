@@ -49,7 +49,9 @@ public class Character {
         if (victim != this) {
             int actualDamage = damage;
             if (victim.getLevel() >= (this.level + 5)) {
-            actualDamage = (int)(damage * 0.5);
+                actualDamage = (int)(damage * 0.5);
+            } else if (victim.getLevel() <= (this.level - 5)) {
+                actualDamage = (int)(damage * 1.5);
             }
             victim.damage(actualDamage);
         }
