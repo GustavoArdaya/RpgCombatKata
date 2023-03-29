@@ -188,16 +188,19 @@ class CharacterTest {
     @Test
     void CharacterMustHaveIntegerAttackRange() {
         //GIVEN
+        Character thrall = new Character("Thrall");
         Character gimli = new Melee("Gimli");
         Character legolas = new Ranged("Legolas");
 
         //WHEN
-        var sut1 = gimli.getRange() instanceof Integer;
-        var sut2 = legolas.getRange() instanceof Integer;
+        var sut1 = thrall.getRange() instanceof Integer;
+        var sut2 = gimli.getRange() instanceof Integer;
+        var sut3 = legolas.getRange() instanceof Integer;
 
         //THEN
         assertTrue(sut1);
         assertTrue(sut2);
+        assertTrue(sut3);
 
     }
 
