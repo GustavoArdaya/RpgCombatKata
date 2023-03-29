@@ -1,6 +1,7 @@
 package com.example.RPGCombatKata;
 
 import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -12,6 +13,8 @@ public class Character {
     private Boolean isAlive;
     private Integer range;
     List<Integer> position = Arrays.asList(new Integer[2]);
+
+    List<Faction> factions = new ArrayList<>();
 
     public Character(String name) {
         this.name = name;
@@ -67,6 +70,14 @@ public class Character {
 
     public void setPosition(int x, int y) {
         this.position = Arrays.asList(x, y);
+    }
+
+    public List<Faction> getFactions() {
+        return factions;
+    }
+
+    public void joinFaction(Faction faction) {
+        this.factions.add(faction);
     }
 
     public void attacks(Character victim, int damage) {
