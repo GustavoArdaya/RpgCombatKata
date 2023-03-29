@@ -97,6 +97,7 @@ class CharacterTest {
         assertEquals(1000, sut3);
     }
 
+    //Iteration two tests
     @Test
     void characterCannotAttackHimself() {
         //GIVEN
@@ -180,7 +181,23 @@ class CharacterTest {
         assertEquals(850, sut1);
         assertEquals(850,sut2);
         assertEquals(900, sut3);
+    }
 
+    //Iteration three tests
+
+    @Test
+    void CharacterMustHaveIntegerAttackRange() {
+        //GIVEN
+        Character gimli = new Melee("Gimli");
+        Character legolas = new Ranged("Legolas");
+
+        //WHEN
+        var sut1 = gimli.getRange() instanceof Integer;
+        var sut2 = legolas.getRange() instanceof Integer;
+
+        //THEN
+        assertTrue(sut1);
+        assertTrue(sut2);
 
     }
 
