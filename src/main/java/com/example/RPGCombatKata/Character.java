@@ -44,4 +44,15 @@ public class Character {
     public void setAlive(Boolean alive) {
         isAlive = alive;
     }
+
+    public void attack(Character victim, int damage) {
+        victim.damage(damage);
+    }
+
+    public void damage(int damage) {
+        this.health -= damage;
+        if(this.health <= 0) {
+            this.isAlive = false;
+        }
+    }
 }
