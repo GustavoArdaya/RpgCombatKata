@@ -330,6 +330,30 @@ class CharacterTest {
         assertTrue(sut1);
         assertTrue(sut2);
         assertFalse(sut3);
+    }
 
+    @Test
+    void characterCannotDamageAllies() {
+        //GIVEN
+        Character masterChief = new Character("Master Chief");
+        Character cortana = new Character("Cortana");
+        Character sangheili = new Character("Sangheili");
+
+        Faction spartan = new Faction("Spartan");
+        Faction spaceCommand = new Faction("United Nations Space Command");
+        Faction forerunners = new Faction("Forerunners");
+        Faction covenant = new Faction("Covenant");
+
+        //WHEN
+        masterChief.attacks(cortana, 50);
+        masterChief.attacks(sangheili, 50);
+
+        var sut1 = cortana.getHealth();
+        var sut2 = sangheili.getHealth();
+
+        //THEN
+
+        assertEquals(1000, sut1);
+        assertEquals(950, sut2);
     }
 }
