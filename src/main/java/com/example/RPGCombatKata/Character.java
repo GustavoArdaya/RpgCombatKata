@@ -1,12 +1,17 @@
 package com.example.RPGCombatKata;
 
+import java.sql.Array;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
+
 public class Character {
     private String name;
     private Long health;
     private Integer level;
     private Boolean isAlive;
-
     private Integer range;
+    List<Integer> position = Arrays.asList(new Integer[2]);
 
     public Character(String name) {
         this.name = name;
@@ -56,8 +61,19 @@ public class Character {
         isAlive = alive;
     }
 
+    public List<Integer> getPosition() {
+        return position;
+    }
+
+    public void setPosition(int x, int y) {
+        this.position = Arrays.asList(x, y);
+    }
+
     public void attacks(Character victim, int damage) {
-        if (victim != this) {
+        Integer playerPosition = this.getPosition().stream().reduce(0, Integer::sum);
+        Integer victimPosition = victim.getPosition().stream().reduce(0, Integer::sum);
+        int distance = Math.abs(playerPosition - victimPosition);
+        if (victim != this && distance <= this.getRange()) {
             int actualDamage = damage;
             if (victim.getLevel() >= (this.level + 5)) {
                 actualDamage = (int)(damage * 0.5);

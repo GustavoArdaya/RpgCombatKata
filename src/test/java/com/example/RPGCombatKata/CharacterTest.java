@@ -205,7 +205,7 @@ class CharacterTest {
     }
 
     @Test
-    void CharacterRangeMustChangeAccordingToClass() {
+    void DefaultCharactersRangeMustChangeAccordingToClass() {
         //GIVEN
         Character gimli = new Melee("Gimli");
         Character legolas = new Ranged("Legolas");
@@ -214,8 +214,29 @@ class CharacterTest {
         var sut1 = gimli.getRange();
         var sut2 = legolas.getRange();
 
+        //THEN
         assertEquals(2, sut1);
         assertEquals(20, sut2);
     }
 
+    @Test
+    void EnemyShouldBeInRangeToBeAtacked() {
+        //Given
+        Character frenchKnight = new Melee("French Knight");
+        Character longBowman = new Ranged("LongBowman");
+
+        //WHEN
+        frenchKnight.setPosition(8,8);
+        longBowman.setPosition(0,0);
+        frenchKnight.attacks(longBowman, 100);
+        longBowman.attacks(frenchKnight,100);
+
+        var sut1 = frenchKnight.getHealth();
+        var sut2 = longBowman.getHealth();
+
+        //THEN
+        assertEquals(900, sut1);
+        assertEquals(1000, sut2);
+
+    }
 }
