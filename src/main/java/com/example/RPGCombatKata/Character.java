@@ -60,7 +60,9 @@ public class Character {
     }
 
     public void heals(Character character, int healthAmount) {
-        character.restoreHealth(healthAmount);
+        if (character == this) {
+            character.restoreHealth(healthAmount);
+        }
     }
 
     private void restoreHealth(int healthAmount) {

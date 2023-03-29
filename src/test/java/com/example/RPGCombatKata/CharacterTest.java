@@ -71,26 +71,29 @@ class CharacterTest {
 
 
     @Test
-    void characterCanHealOtherCharactersOnlyIfNotDeadAndHealingCannotGoBeyond1000() {
+    void characterCanBeHealedOnlyIfNotDeadAndHealingCannotGoBeyond1000() {
         //GIVEN
-        Character drHouse = new Character("Dr. House");
-        Character curablePatient = new Character("Patient");
-        Character deadPatient = new Character("Dead Patient");
-        Character healthyPatient = new Character("Healthy Patient");
+        Character deadGuy = new Character("Dead Guy");
+        Character healableGuy = new Character("Healable Guy");
+        Character wayTooHealthyGuy = new Character("Way Too Healthy Guy");
+
+
 
         //WHEN
-        curablePatient.damage(500); // patient receives 500 damage
-        drHouse.heals(curablePatient, 50); // Dr. heals patient;
-        deadPatient.damage(1001); // second patient receives 1001 damage and dies
-        drHouse.heals(deadPatient, 50); // Dr. tries to heal the second patient, but he's dead already!
-        drHouse.heals(healthyPatient, 50); // Dr. tries to heal the third patient, but he's already at max health'
-        var sut1 = curablePatient.getHealth();
-        var sut2 = deadPatient.getHealth();
-        var sut3 = healthyPatient.getHealth();
+        deadGuy.damage(1001);
+        healableGuy.damage(500);
+        wayTooHealthyGuy.damage(0);
+        deadGuy.heals(deadGuy, 50);
+        healableGuy.heals(healableGuy, 50);
+        wayTooHealthyGuy.heals(wayTooHealthyGuy, 50);
+
+        var sut1 = deadGuy.getHealth();
+        var sut2 = healableGuy.getHealth();
+        var sut3 = wayTooHealthyGuy.getHealth();
 
         //THEN
-        assertEquals(550, sut1);
-        assertEquals(0,sut2);
+        assertEquals(0, sut1);
+        assertEquals(550,sut2);
         assertEquals(1000, sut3);
     }
 
