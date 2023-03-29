@@ -229,16 +229,16 @@ class CharacterTest {
     void EnemyShouldBeInRangeToBeAttacked() {
         //Given
         Character frenchKnight = new Melee("French Knight");
-        Character longBowman = new Ranged("LongBowman");
+        Character englishLongBowman = new Ranged("English LongBowman");
 
         //WHEN
         frenchKnight.setPosition(8,8);
-        longBowman.setPosition(0,0);
-        frenchKnight.attacks(longBowman, 100);
-        longBowman.attacks(frenchKnight,100);
+        englishLongBowman.setPosition(0,0);
+        frenchKnight.attacks(englishLongBowman, 100);
+        englishLongBowman.attacks(frenchKnight,100);
 
         var sut1 = frenchKnight.getHealth();
-        var sut2 = longBowman.getHealth();
+        var sut2 = englishLongBowman.getHealth();
 
         //THEN
         assertEquals(900, sut1);
@@ -277,7 +277,7 @@ class CharacterTest {
     @Test
     void CharacterMayLeaveOneOrManyFactions() {
         //GIVEN
-        Character faithfulFin = new Character("Faithful Fin");
+        Character faithfulFinn = new Character("Faithful Finng");
         Character traitorTom = new Character("Traitor Tom");
         Character renegadeRoy = new Character("Renegade Roy");
 
@@ -285,14 +285,14 @@ class CharacterTest {
         Faction spiesGuild = new Faction("Spies' Guild");
 
         //WHEN
-        faithfulFin.joinFaction(heroAlliance);
+        faithfulFinn.joinFaction(heroAlliance);
         traitorTom.joinFaction(heroAlliance, spiesGuild);
         renegadeRoy.joinFaction(heroAlliance, spiesGuild);
 
         traitorTom.leaveFaction(heroAlliance);
         renegadeRoy.leaveFaction(heroAlliance, spiesGuild);
 
-        var sut1 = faithfulFin.getFactions();
+        var sut1 = faithfulFinn.getFactions();
         var sut2 = traitorTom.getFactions();
         var sut3 = renegadeRoy.getFactions();
 
