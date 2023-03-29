@@ -86,8 +86,7 @@ public class Character {
     }
 
     public void attacks(Character victim, int damage) {
-        Boolean victimIsAlly = this.isAlly(victim);
-        if (victim != this && !victimIsAlly) {
+        if (victim != this && !this.isAlly(victim)) {
             int distance = this.getDistanceToVictim(victim);
             if (distance <= this.getRange()) {
                 int actualDamage = damage;
@@ -114,7 +113,7 @@ public class Character {
     }
 
     public void heals(Character character, int healthAmount) {
-        if (character == this) {
+        if (character == this || this.isAlly(character) ) {
             character.restoreHealth(healthAmount);
         }
     }
