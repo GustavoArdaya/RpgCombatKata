@@ -81,9 +81,7 @@ public class Character {
     }
 
     public void attacks(Character victim, int damage) {
-        Integer playerPosition = this.getPosition().stream().reduce(0, Integer::sum);
-        Integer victimPosition = victim.getPosition().stream().reduce(0, Integer::sum);
-        int distance = Math.abs(playerPosition - victimPosition);
+        int distance = this.getDistanceToVictim(victim);
         if (victim != this && distance <= this.getRange()) {
             int actualDamage = damage;
             if (victim.getLevel() >= (this.level + 5)) {
@@ -94,7 +92,11 @@ public class Character {
             victim.damage(actualDamage);
         }
     }
-
+    private int getDistanceToVictim(Character victim) {
+        Integer playerPosition = this.getPosition().stream().reduce(0, Integer::sum);
+        Integer victimPosition = victim.getPosition().stream().reduce(0, Integer::sum);
+        return Math.abs(playerPosition - victimPosition);
+    }
     public void damage(int damage) {
         this.health -= damage;
         if(this.health <= 0) {

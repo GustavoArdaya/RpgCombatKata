@@ -274,4 +274,17 @@ class CharacterTest {
         assertThat(sut2, hasSize(1));
         assertThat(sut3, hasSize(2));
     }
+
+    @Test
+    void CharacterMayLeaveOneOrManyFactions() {
+        //GIVEN
+        Character traitorTom = new Character("Traitor Tom");
+        Character renegadeRoy = new Character("Renegade Roy");
+
+        Faction heroAlliance = new Faction("Hero Alliance");
+        Faction spiesGuild = new Faction("Spies' Guild");
+
+        //WHEN
+
+    }
 }
