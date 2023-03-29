@@ -277,6 +277,7 @@ class CharacterTest {
     @Test
     void CharacterMayLeaveOneOrManyFactions() {
         //GIVEN
+        Character faithfulFin = new Character("Faithful Fin");
         Character traitorTom = new Character("Traitor Tom");
         Character renegadeRoy = new Character("Renegade Roy");
 
@@ -284,6 +285,21 @@ class CharacterTest {
         Faction spiesGuild = new Faction("Spies' Guild");
 
         //WHEN
+        faithfulFin.joinFaction(heroAlliance);
+        traitorTom.joinFaction(heroAlliance, spiesGuild);
+        renegadeRoy.joinFaction(heroAlliance, spiesGuild);
+
+        traitorTom.leaveFaction(heroAlliance);
+        renegadeRoy.leaveFaction(heroAlliance, spiesGuild);
+
+        var sut1 = faithfulFin.getFactions();
+        var sut2 = traitorTom.getFactions();
+        var sut3 = renegadeRoy.getFactions();
+
+        //THEN
+        assertThat(sut1, hasSize(1));
+        assertThat(sut2, hasSize(1));
+        assertThat(sut3, hasSize(0));
 
     }
 }

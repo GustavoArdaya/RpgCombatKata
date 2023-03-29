@@ -80,6 +80,10 @@ public class Character {
         this.factions.addAll(Arrays.asList(faction));
     }
 
+    public void leaveFaction(Faction... faction) {
+        this.factions.removeAll(Arrays.asList(faction));
+    }
+
     public void attacks(Character victim, int damage) {
         int distance = this.getDistanceToVictim(victim);
         if (victim != this && distance <= this.getRange()) {
