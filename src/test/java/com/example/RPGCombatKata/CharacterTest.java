@@ -152,4 +152,36 @@ class CharacterTest {
         assertEquals(950, sut2);
         assertEquals(950, sut3);
     }
+
+    @Test
+    void victimIncreasesDamageCausedBy50PercentIfFiveLevelsBelowCharacter() {
+
+        //GIVEN
+        Character johnStrong = new Character("John Strong");
+        Character farmingFodder = new Character("Farming Fodder");
+        Character evilBrother = new Character("Evil Brother");
+        Character highSchoolBully = new Character("High School Bully");
+
+        //WHEN
+        johnStrong.setLevel(10);
+        farmingFodder.setLevel(4);
+        evilBrother.setLevel(5);
+        highSchoolBully.setLevel(6);
+
+        johnStrong.attacks(farmingFodder, 100);
+        johnStrong.attacks(evilBrother, 100);
+        johnStrong.attacks(highSchoolBully, 100);
+
+        var sut1 = farmingFodder.getHealth();
+        var sut2 = evilBrother.getHealth();
+        var sut3 = highSchoolBully.getHealth();
+
+        //THEN
+        assertEquals(850, sut1);
+        assertEquals(850,sut2);
+        assertEquals(900, sut3);
+
+
+    }
+
 }
