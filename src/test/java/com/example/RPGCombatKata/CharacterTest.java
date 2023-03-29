@@ -204,4 +204,18 @@ class CharacterTest {
 
     }
 
+    @Test
+    void CharacterRangeMustChangeAccordingToClass() {
+        //GIVEN
+        Character gimli = new Melee("Gimli");
+        Character legolas = new Ranged("Legolas");
+
+        //WHEN
+        var sut1 = gimli.getRange();
+        var sut2 = legolas.getRange();
+
+        assertEquals(2, sut1);
+        assertEquals(20, sut2);
+    }
+
 }
