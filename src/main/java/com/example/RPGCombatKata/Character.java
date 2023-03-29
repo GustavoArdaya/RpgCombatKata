@@ -22,6 +22,7 @@ public class Character {
         this.level = 1;
         this.isAlive = true;
         this.range = 1;
+        this.position = Arrays.asList(0,0);
     }
 
     public Integer getRange() {
@@ -85,15 +86,17 @@ public class Character {
     }
 
     public void attacks(Character victim, int damage) {
-        int distance = this.getDistanceToVictim(victim);
-        if (victim != this && distance <= this.getRange()) {
-            int actualDamage = damage;
-            if (victim.getLevel() >= (this.level + 5)) {
-                actualDamage = (int)(damage * 0.5);
-            } else if (victim.getLevel() <= (this.level - 5)) {
-                actualDamage = (int)(damage * 1.5);
+        if (victim != this) {
+            int distance = this.getDistanceToVictim(victim);
+            if (distance <= this.getRange()) {
+                int actualDamage = damage;
+                if (victim.getLevel() >= (this.level + 5)) {
+                    actualDamage = (int) (damage * 0.5);
+                } else if (victim.getLevel() <= (this.level - 5)) {
+                    actualDamage = (int) (damage * 1.5);
+                }
+                victim.damage(actualDamage);
             }
-            victim.damage(actualDamage);
         }
     }
     private int getDistanceToVictim(Character victim) {
@@ -122,5 +125,11 @@ public class Character {
                 this.health = 1000L;
             }
         }
+    }
+
+    public Boolean isAlly(Character character) {
+        List<Faction> commonFactions = new ArrayList<Faction>(this.getFactions());
+        commonFactions.retainAll(character.getFactions());
+        return commonFactions.size() > 0;
     }
 }
