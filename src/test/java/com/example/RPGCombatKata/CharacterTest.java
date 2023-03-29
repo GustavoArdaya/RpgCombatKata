@@ -302,4 +302,34 @@ class CharacterTest {
         assertThat(sut3, hasSize(0));
 
     }
+
+    @Test
+    void charactersInSameFactionAreAllies() {
+
+        //GIVEN
+        Character masterChief = new Character("Master Chief");
+        Character cortana = new Character("Cortana");
+        Character sangheili = new Character("Sangheili");
+
+        Faction spartan = new Faction("Spartan");
+        Faction spaceCommand = new Faction("United Nations Space Command");
+        Faction forerunners = new Faction("Forerunners");
+        Faction covenant = new Faction("Covenant");
+
+        //WHEN
+        masterChief.joinFaction(spartan, spaceCommand);
+        cortana.joinFaction(spaceCommand,forerunners);
+        sangheili.joinFaction(covenant);
+
+        var sut1 = masterChief.isAlly(cortana);
+        var sut2 = cortana.isAlly(masterChief);
+        var sut3 = masterChief.isAlly(sangheili);
+
+        //THEN
+
+        assertTrue(sut1);
+        assertTrue(sut2);
+        assertFalse(sut3);
+
+    }
 }
