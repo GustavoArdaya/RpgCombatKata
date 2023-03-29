@@ -360,4 +360,39 @@ class CharacterTest {
         assertEquals(1000, sut1);
         assertEquals(950, sut2);
     }
+    @Test
+    void characterCanHealAllies() {
+        //GIVEN
+        Character masterChief = new Character("Master Chief");
+        Character cortana = new Character("Cortana");
+        Character sangheili = new Character("Sangheili");
+
+        Faction spartan = new Faction("Spartan");
+        Faction spaceCommand = new Faction("United Nations Space Command");
+        Faction forerunners = new Faction("Forerunners");
+        Faction covenant = new Faction("Covenant");
+
+        //WHEN
+        masterChief.joinFaction(spartan, spaceCommand);
+        cortana.joinFaction(spaceCommand,forerunners);
+        sangheili.joinFaction(covenant);
+
+        masterChief.damage(500);
+        cortana.damage(500);
+        sangheili.damage(500);
+
+        masterChief.heals(masterChief, 100);
+        masterChief.heals(cortana, 100);
+        masterChief.heals(sangheili, 100);
+
+        var sut1 = masterChief.getHealth();
+        var sut2 = cortana.getHealth();
+        var sut3 = sangheili.getHealth();
+
+        //THEN
+
+        assertEquals(600, sut1);
+        assertEquals(600, sut2);
+        assertEquals(500, sut3);
+    }
 }
