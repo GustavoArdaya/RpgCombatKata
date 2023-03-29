@@ -3,7 +3,13 @@ package com.example.RPGCombatKata;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 
 class CharacterTest {
 
@@ -220,7 +226,7 @@ class CharacterTest {
     }
 
     @Test
-    void EnemyShouldBeInRangeToBeAtacked() {
+    void EnemyShouldBeInRangeToBeAttacked() {
         //Given
         Character frenchKnight = new Melee("French Knight");
         Character longBowman = new Ranged("LongBowman");
@@ -238,5 +244,30 @@ class CharacterTest {
         assertEquals(900, sut1);
         assertEquals(1000, sut2);
 
+    }
+
+    // Iteration four tests
+
+    @Test
+    void characterStartsWithoutFactionButCanJoinOneOrMany() {
+        //GIVEN
+
+        Character sigmaMaleChad = new Character("Chad");
+        Character peerPressureJohn = new Character("John");
+
+        Faction jocksClub = new Faction("Jocks Club");
+        Faction badBunnyFans = new Faction("Bad Bunny Fan Club");
+
+        //WHEN
+        peerPressureJohn.joinFaction(jocksClub);
+        peerPressureJohn.joinFaction(badBunnyFans);
+
+        var sut1 = peerPressureJohn.getFactions();
+        var sut2 = sigmaMaleChad.getFactions();
+
+        //THEN
+
+        assertThat(sut1, hasSize(2));
+        assertThat(sut2, hasSize(0));
     }
 }
