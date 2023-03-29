@@ -76,8 +76,8 @@ public class Character {
         return factions;
     }
 
-    public void joinFaction(Faction faction) {
-        this.factions.add(faction);
+    public void joinFaction(Faction... faction) {
+        this.factions.addAll(Arrays.asList(faction));
     }
 
     public void attacks(Character victim, int damage) {

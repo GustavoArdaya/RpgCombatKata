@@ -261,8 +261,7 @@ class CharacterTest {
 
         //WHEN
         badTasteBenny.joinFaction(badBunnyFans);
-        peerPressureJohn.joinFaction(jocksClub);
-        peerPressureJohn.joinFaction(badBunnyFans);
+        peerPressureJohn.joinFaction(jocksClub, badBunnyFans);
 
         var sut1 = sigmaMaleChad.getFactions();
         var sut2 = badTasteBenny.getFactions();
