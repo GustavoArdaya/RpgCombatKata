@@ -133,19 +133,19 @@ class CharacterTest {
         Character meekPlayer = new Character("Meek Player");
         Character lowlyMinion = new Character("Lowly Minion");
         Character middleMinion = new Character("Middle Minion");
-        Character finalBoss = new Character("Final Boss");
+        Character strongMinion = new Character("Final Boss");
 
         //WHEN
-        lowlyMinion.setLevel(2);
-        middleMinion.setLevel(5);
-        finalBoss.setLevel(50);
+        lowlyMinion.setLevel(5);
+        middleMinion.setLevel(6);
+        strongMinion.setLevel(7);
         meekPlayer.attacks(lowlyMinion, 100);
         meekPlayer.attacks(middleMinion,100);
-        meekPlayer.attacks(finalBoss, 100);
+        meekPlayer.attacks(strongMinion, 100);
 
         var sut1 = lowlyMinion.getHealth();
         var sut2 = middleMinion.getHealth();
-        var sut3 = finalBoss.getHealth();
+        var sut3 = strongMinion.getHealth();
 
         //THEN
         assertEquals(900, sut1);
