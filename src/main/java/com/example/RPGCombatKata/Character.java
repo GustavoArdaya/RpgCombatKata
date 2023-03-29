@@ -119,7 +119,7 @@ public class Character {
     }
 
     private void restoreHealth(int healthAmount) {
-        if(this.isAlive && this.health < 1000) {
+        if(this.isAlive && this.health <= 1000) {
             this.health += healthAmount;
             if (this.health > 1000) {
                 this.health = 1000L;
