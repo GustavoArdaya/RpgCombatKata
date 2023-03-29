@@ -45,7 +45,7 @@ public class Character {
         isAlive = alive;
     }
 
-    public void attack(Character victim, int damage) {
+    public void attacks(Character victim, int damage) {
         victim.damage(damage);
     }
 
@@ -53,6 +53,10 @@ public class Character {
         this.health -= damage;
         if(this.health <= 0) {
             this.isAlive = false;
+            this.setHealth(0L);
         }
+    }
+
+    public void heals(Character character, int cure) {
     }
 }
