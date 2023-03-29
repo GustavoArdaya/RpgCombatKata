@@ -253,21 +253,25 @@ class CharacterTest {
         //GIVEN
 
         Character sigmaMaleChad = new Character("Chad");
+        Character badTasteBenny = new Character("Bad Taste Benny");
         Character peerPressureJohn = new Character("John");
 
         Faction jocksClub = new Faction("Jocks Club");
         Faction badBunnyFans = new Faction("Bad Bunny Fan Club");
 
         //WHEN
+        badTasteBenny.joinFaction(badBunnyFans);
         peerPressureJohn.joinFaction(jocksClub);
         peerPressureJohn.joinFaction(badBunnyFans);
 
-        var sut1 = peerPressureJohn.getFactions();
-        var sut2 = sigmaMaleChad.getFactions();
+        var sut1 = sigmaMaleChad.getFactions();
+        var sut2 = badTasteBenny.getFactions();
+        var sut3 = peerPressureJohn.getFactions();
 
         //THEN
 
-        assertThat(sut1, hasSize(2));
-        assertThat(sut2, hasSize(0));
+        assertThat(sut1, hasSize(0));
+        assertThat(sut2, hasSize(1));
+        assertThat(sut3, hasSize(2));
     }
 }
