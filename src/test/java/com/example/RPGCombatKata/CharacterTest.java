@@ -395,4 +395,31 @@ class CharacterTest {
         assertEquals(600, sut2);
         assertEquals(500, sut3);
     }
+
+    @Test
+    void characterCanDealDamageToThings() {
+        //GIVEN
+        Character woodsman = new Character("Woodsman");
+        Thing tree = new Thing("Tree", 2000L);
+
+        woodsman.attacks(tree, 500);
+        //WHEN
+        var sut = tree.getHealth();
+        //THEN
+        assertEquals(1500, sut);
+    }
+
+    @Test
+    void damagedThingsGetDestroyedWhenHealthReachesZero() {
+        //GIVEN
+        Character link = new Character("Link");
+        Thing vase = new Thing("Vase", 50L);
+        link.attacks(vase,50);
+
+        //WHEN
+        var sut = vase.isDestroyed();
+
+        //THEN
+        assertTrue(sut);
+    }
 }

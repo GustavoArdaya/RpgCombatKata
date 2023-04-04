@@ -99,6 +99,11 @@ public class Character {
             }
         }
     }
+
+    public void attacks(Thing thing, int damage) {
+        thing.receivesDamage(damage);
+    }
+
     private int getDistanceToVictim(Character victim) {
         Integer playerPosition = this.getPosition().stream().reduce(0, Integer::sum);
         Integer victimPosition = victim.getPosition().stream().reduce(0, Integer::sum);
